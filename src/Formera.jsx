@@ -57,7 +57,10 @@ class Formera extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!deepEqual(nextProps.initialValues, this.props.initialValues)) {
+    if (
+      this.props.enableReinitialize &&
+      !deepEqual(nextProps.initialValues, this.props.initialValues)
+    ) {
       this.resetForm(nextProps);
     }
   }
@@ -269,6 +272,7 @@ Formera.propTypes = {
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 
   // config props
+  enableReinitialize: PropTypes.bool,
   initialValues: PropTypes.shape(),
   onSubmit: PropTypes.func.isRequired,
   onReset: PropTypes.func,
@@ -282,9 +286,9 @@ Formera.defaultProps = {
   children: undefined,
   component: undefined,
 
-  initialValues: {},
-
   // config props
+  enableReinitialize: false,
+  initialValues: {},
   onReset: undefined,
   validateOnBlur: true,
   validateOnChange: true,

@@ -107,6 +107,7 @@ describe('<Formera>', () => {
       const form = shallow(<Formera
         onSubmit={noop}
         component={noop}
+        enableReinitialize
         initialValues={initialValues}
       />);
       const formInstance = form.instance();
@@ -118,6 +119,22 @@ describe('<Formera>', () => {
     });
 
     it('should not reset form if same initialValues', () => {
+      const initialValues = { hello: 'hi' };
+      const form = shallow(<Formera
+        onSubmit={noop}
+        component={noop}
+        enableReinitialize
+        initialValues={initialValues}
+      />);
+      const formInstance = form.instance();
+      const spy = jest.spyOn(formInstance, 'resetForm');
+
+      const nextProps = { initialValues: { hello: 'hi' } };
+      formInstance.componentWillReceiveProps(nextProps);
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('should not reset form if without enableReinitialize', () => {
       const initialValues = { hello: 'hi' };
       const form = shallow(<Formera
         onSubmit={noop}

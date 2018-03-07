@@ -29,13 +29,11 @@ class Field extends React.Component {
     );
 
     if (formera) {
-      this.formera = formera;
-
       this.state = createState({
-        value: getIn(this.formera.values, props.name),
+        value: getIn(formera.values, props.name),
       });
 
-      this.formera.registerField(this.field);
+      formera.registerField(this.field);
     }
   }
 
@@ -44,8 +42,7 @@ class Field extends React.Component {
   }
 
   componentWillUnmount() {
-    // console.log('this', this);
-    this.formera.unregisterField(this.field);
+    this.context.formera.unregisterField(this.field);
   }
 
   setActive = (active) => {
@@ -77,21 +74,21 @@ class Field extends React.Component {
 
   reset = () => {
     this.setState(createState({
-      value: getIn(this.formera.values, this.props.name),
+      value: getIn(this.context.formera.values, this.props.name),
     }));
   };
 
-  handleFocus = () => this.formera.handleFieldFocus(this.field);
+  handleFocus = () => this.context.formera.handleFieldFocus(this.field);
 
   handleOnChange = (event) => {
     const { type, value, checked } = event.target;
 
     const val = /number|range/.test(type) ? parseFloat(value) : /checkbox/.test(type) ? checked : value;
 
-    this.formera.handleFieldChange(this.field, val);
+    this.context.formera.handleFieldChange(this.field, val);
   };
 
-  handleBlur = () => this.formera.handleFieldBlur(this.field);
+  handleBlur = () => this.context.formera.handleFieldBlur(this.field);
 
   field = ({
     name: this.props.name,
