@@ -130,8 +130,9 @@ class Formera extends React.Component {
 
   resetForm = (props) => {
     this.resets += 1;
-    this.setState(createState(props || this.props));
-    this.fields.forEach(field => field.reset());
+    this.setState(createState(props || this.props), () => {
+      this.fields.forEach(field => field.reset());
+    });
   };
 
   registerField = (field) => {
