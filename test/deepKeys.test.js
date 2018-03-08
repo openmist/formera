@@ -1,5 +1,6 @@
 import deepKeys from '../src/helpers/deepKeys';
 
+// Todo: rename deepKeys to errorKeys?
 describe('deepKeys', () => {
   it('can resolve both objects and arrays', () => {
     const resolve = {
@@ -25,7 +26,11 @@ describe('deepKeys', () => {
     const resolve = {
       deep: {
         deeper: {
-          deepest: ['value', 'another value', { a: 'third value' }],
+          deepest: [
+            'value',
+            'another value',
+            { a: 'third value' },
+          ],
         },
       },
     };
