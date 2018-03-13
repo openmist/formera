@@ -234,9 +234,12 @@ class Formera extends React.Component {
         if (isValid) {
           const submit = this.props.onSubmit(this.state, this.formeraActions());
 
-          Promise.resolve(submit).then(() => {
-            this.setSubmitting(false);
-          });
+          Promise
+            .resolve(submit)
+            .catch(() => {})
+            .then(() => {
+              this.setSubmitting(false);
+            });
         } else {
           this.setSubmitting(false);
         }

@@ -40,4 +40,23 @@ describe('deepKeys', () => {
       'deep.deeper.deepest.2.a',
     ]);
   });
+
+  it('resolves arrays that contains objects', () => {
+    const resolve = {
+      deep: {
+        deeper: {
+          deepest: [
+            { a: 'third value' },
+            { a: 'third value' },
+          ],
+        },
+      },
+    };
+
+    expect(deepKeys(resolve)).toEqual([
+      'deep.deeper.deepest.0.a',
+      'deep.deeper.deepest.1.a',
+    ]);
+  });
+
 });

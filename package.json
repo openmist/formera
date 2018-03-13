@@ -1,6 +1,6 @@
 {
   "name": "formera",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "Forms in React - the way you want it",
   "main": "lib/index.js",
   "directories": {
@@ -19,9 +19,10 @@
   },
   "keywords": [
     "react",
+    "reactjs",
     "form",
     "forms",
-    "hoc",
+    "formera",
     "validation"
   ],
   "author": "Alexander Liljengård <alexander@liljengard.se>",
