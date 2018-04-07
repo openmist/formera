@@ -118,7 +118,7 @@ class Field extends React.Component {
     };
 
     if (type === 'radio' || type === 'checkbox') {
-      input.checked = value === propsValue;
+      input.checked = (value === propsValue) || (propsValue === undefined && value);
       input.value = propsValue;
     }
 
@@ -135,7 +135,7 @@ Field.propTypes = {
   // "config" props
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]),
 };
 
 Field.defaultProps = {
