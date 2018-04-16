@@ -65,10 +65,6 @@ class Formera extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !deepEqual(nextState, this.state);
-  }
-
   setErrors = (nextErrors = {}) => {
     const promises = [];
     const errorKeys = deepKeys(nextErrors);
